@@ -46,7 +46,7 @@ public class ListaAluno extends HttpServlet {
 		out.println("<head>");
 		out.println("    <meta charset=\"UTF-8\">");
 		out.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">");
-		out.println("    <title>Academico  </title>");
+		out.println("    <title>Academico - Alisson</title>");
 		out.println("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
 		out.println("    <link href=\"css/bootstrap.min.css\" rel=\"stylesheet\" media=\"screen\">");
 		out.println("    <link href=\"css/bootstrap-responsive.min.css\" rel=\"stylesheet\" media=\"screen\">");
@@ -68,9 +68,7 @@ public class ListaAluno extends HttpServlet {
 		out.println("        <div class=\"span2\">");
 		out.println("            <ul class=\"nav nav-tabs nav-stacked\">");
 		out.println("                <li><a href=\"#\">Cadastrar Aluno<i class=\"icon-chevron-right\"></i></a></li>");
-		out.println("               <li><a href=\"#\">Cadastrar Disciplina<i class=\"icon-chevron-right\"></i></a></li>");
-		out.println("                <li><a href=\"#\">Cadastrar Professor<i class=\"icon-chevron-right\"></i></a></li>");
-		out.println("                <li><a href=\"#\">Cadastrar Notas<i class=\"icon-chevron-right\"></i></a></li>");
+		out.println("                <li><a href=\"#\">Cadastrar Disciplina<i class=\"icon-chevron-right\"></i></a></li>");
 		out.println("           </ul>");
 		out.println("        </div>");
 		out.println("        <div class=\"span8\">");
