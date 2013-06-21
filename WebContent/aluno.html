@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Academico  </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+    <link href="css/style.css" rel="stylesheet" media="screen">
+    <!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+     <![endif]-->
+</head>
+<body>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="#">Boletim On-line</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Início</a></li>
+              <li><a href="#about">Sobre</a></li>
+              <li><a href="#contact">Contato</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Disciplinas<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li class="nav-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+
+            <!--<form class="navbar-form pull-right">
+              <input class="span2" type="text" placeholder="Email">
+              <input class="span2" type="password" placeholder="Password">
+              <button type="submit" class="btn">Login</button>
+            </form>-->
+            <div class="pull-right">
+                <div class="btn-group">
+                    <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> Vistante</a>
+                    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                    <ul class="dropdown-menu" style="left:-48px !important">
+                      <li><a href="#"><i class="icon-pencil"></i> Edit</a></li>
+                      <li><a href="#"><i class="icon-trash"></i> Delete</a></li>
+                      <li><a href="#"><i class="icon-ban-circle"></i> Ban</a></li>
+                      <li class="divider"></li>
+                      <li><a href="{$includes.app}login/logout"><i class="i"></i>Sair</a></li>
+                    </ul>
+               </div>
+            </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <ul class="nav nav-tabs nav-stacked">
+                <li><a href="#">Cadastrar Aluno<i class="icon-chevron-right"></i></a></li>
+                <li><a href="#">Cadastrar Disciplina<i class="icon-chevron-right"></i></a></li>
+                <li><a href="#">Cadastrar Professor<i class="icon-chevron-right"></i></a></li>
+                <li><a href="#">Cadastrar Notas<i class="icon-chevron-right"></i></a></li>
+           </ul>
+        </div>
+        <div class="span8">
+              <form class="form-horizontal" action="CadAluno" method="post">
+                <div class="control-group">
+                  <label class="control-label" for="nome">Nome</label>
+                  <div class="controls">
+                    <input type="text" name="nome" id="nome" placeholder="Nome do aluno…">
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="mae">Mãe</label>
+                  <div class="controls">
+                    <input type="text" name="mae" id="carga" placeholder="No da mâe…">
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="dtnascimento">Data nascimento</label>
+                  <div class="controls">
+                    <input type="text" name="dtnascimento" id="dtnascimento" class="data" placeholder="Data nascimento…">
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="cpf">CPF</label>
+                  <div class="controls">
+                    <input type="text" name="cpf" id="cpf" class="cpf" placeholder="CPF…">
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="rg">RG</label>
+                  <div class="controls">
+                    <input type="text" name="rg" id="rg" placeholder="RG…">
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="endereco">Endereco</label>
+                  <div class="controls">
+                    <input type="text" name="endereco" id="endereco" placeholder="Endereco…">
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="cidade">Cidade</label>
+                  <div class="controls">
+                    <input type="text" name="cidade" id="cidade" placeholder="Cidade…">
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="cep">CEP</label>
+                  <div class="controls">
+                    <input type="text" name="cep" id="cep" class="cep" placeholder="CEP…">
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="estado">Estado</label>
+                  <div class="controls">
+                    <select name="estado" class="input">
+                        <option value="">Selecione o Estado</option>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espirito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="telefone">Telefone</label>
+                  <div class="controls">
+                    <input type="text" name="telefone" id="telefone" class="fone" placeholder="Telefone…">
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="estado">Sexo</label>
+                  <div class="controls">
+                   <label class="radio">
+                     <input type="radio" name="sexo" id="sexo" value="m">
+                     Masculino
+                  </label>
+                  <label class="radio">
+                     <input type="radio" name="sexo" id="sexo" value="f">
+                     Feminino
+                  </label>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <div class="controls">
+                    <button type="submit" class="btn">Cadastrar</button>
+                  </div>
+                </div>
+              </form>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="container-fluid">
+<footer class="well">
+        <p>© Sybol 2013</p>
+</footer>
+</div>
+</body>
+<script src="js/jquery.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script src="js/jquery.maskedinput.js" type="text/javascript"></script>
+<script src="js/functions.js" type="text/javascript"></script>
+</html>

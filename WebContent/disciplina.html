@@ -1,0 +1,32 @@
+{include file="header.tpl"}
+        <div class="span2">
+            <ul class="nav nav-tabs nav-stacked">            
+                <li><a href="#">Cadastrar Aluno<i class="icon-chevron-right"></i></a></li>
+                <li><a href="#">Cadastrar Disciplina<i class="icon-chevron-right"></i></a></li>
+                <li><a href="#">Cadastrar Professor<i class="icon-chevron-right"></i></a></li>
+                <li><a href="#">Cadastrar Notas<i class="icon-chevron-right"></i></a></li>
+           </ul>
+        </div>
+        <div class="span8"> 
+                {$message|default:''}
+              <form class="form-horizontal" action="" method="post">
+                <div class="control-group">
+                  <label class="control-label" for="nome">Disciplina</label>
+                  <div class="controls">
+                    <input type="text" name="nome" id="nome" placeholder="Disciplina…">
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="descricao">Descrição</label>
+                  <div class="controls">
+                    <textarea rows="5" cols="10" name="descricao"></textarea>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <div class="controls">
+                    <button type="submit" class="btn">Cadastrar</button>
+                  </div>
+                </div>
+              </form>
+        </div>
+{include file="footer.tpl"}

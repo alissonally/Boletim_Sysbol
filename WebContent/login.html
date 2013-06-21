@@ -1,0 +1,11 @@
+{include file="header.tpl"}
+      <form class="form-signin" action="{$includes.app}login/login" method="POST">
+        <h2 class="brand">SysBOL</h2>
+        {if (isset($erro)==true)}
+        <div class="alert alert-error">{$erro} <a class="close" data-dismiss="alert" href="#">&times;</a></div>
+        {/if}    
+        <input type="text" id="login" name="login" class="input-block-level" placeholder="Usuário">
+        <input type="password" id="senha" name="senha" class="input-block-level" placeholder="Senha">
+        <button class="btn btn-large btn-primary" type="submit">Login</button>
+     </form>	
+{include file="footer.tpl"}
