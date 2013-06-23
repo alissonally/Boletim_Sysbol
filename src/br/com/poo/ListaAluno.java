@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,9 +20,17 @@ public class ListaAluno extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 4315449461496798580L;
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException,
-			IOException {
-
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		PrintWriter out = response.getWriter();
+		response.setContentType("text/html;charset=UTF-8");//Corrige problema de acentuação
+		// inclue cabeçalho
+		RequestDispatcher dispatcherheader = request.getRequestDispatcher("/header");
+		dispatcherheader.include(request, response);
+		//Inclui o Menu
+	    
+		RequestDispatcher dispatchermenu = request.getRequestDispatcher("/menu");
+		dispatchermenu.include(request, response);
 		try{
 		Banco banco = new Banco();
 
@@ -35,79 +44,36 @@ public class ListaAluno extends HttpServlet {
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
 
-		PrintWriter out = response.getWriter();
-		
-		//Corrige problema de acentuação
-		response.setContentType("text/html;charset=UTF-8"); 
-
-		// inicio do codigo html imbutido no servlet -- LEGAL NÉ? HEHEHEHE
-		out.println("<!DOCTYPE HTML>");
-		out.println("<html lang=\"pt-BR\">");
-		out.println("<head>");
-		out.println("    <meta charset=\"UTF-8\">");
-		out.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">");
-		out.println("    <title>Academico - Alisson</title>");
-		out.println("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
-		out.println("    <link href=\"css/bootstrap.min.css\" rel=\"stylesheet\" media=\"screen\">");
-		out.println("    <link href=\"css/bootstrap-responsive.min.css\" rel=\"stylesheet\" media=\"screen\">");
-		out.println("    <link href=\"css/style.css\" rel=\"stylesheet\" media=\"screen\">");
-		out.println("    <!--[if lt IE 9]>");
-		out.println("        <script src=\"js/html5shiv.js\"></script>");
-		out.println("     <![endif]-->");
-		out.println("</head>");
-		out.println("<body>");
-		out.println("    <div class=\"navbar navbar-fixed-top\">");
-		out.println("      <div class=\"navbar-inner\">");
-		out.println("        <div class=\"container-fluid\">");
-		out.println("          <a class=\"brand\" href=\"#\">Boletim On-line</a>");
-		out.println("          </div><!--/.nav-collapse -->");
-		out.println("        </div>");
-		out.println("      </div>");
-		out.println("    <div class=\"container-fluid\">");
-		out.println("    <div class=\"row-fluid\">");
-		out.println("        <div class=\"span2\">");
-		out.println("            <ul class=\"nav nav-tabs nav-stacked\">");
-		out.println("                <li><a href=\"#\">Cadastrar Aluno<i class=\"icon-chevron-right\"></i></a></li>");
-		out.println("                <li><a href=\"#\">Cadastrar Disciplina<i class=\"icon-chevron-right\"></i></a></li>");
-		out.println("           </ul>");
-		out.println("        </div>");
 		out.println("        <div class=\"span8\">");
+		out.println("            <div id=\"msg\"></div>");
 		out.println("        	<table class=\"table table-bordered table-hover\" >");
 		out.println("        		<tr >");
-		out.println("        			<th>Nome Aluno</th>");
-		out.println("        			<th>Data Nascimento</th>");
+		out.println("        			<th>Aluno</th>");
+		out.println("        			<th>Data de Nascimento</th>");
 		out.println("        			<th>Ação</th>");
 		out.println("        		</tr>");
 
 
 		// INSTRUÇÃO DE REPETIÇÃO PARA ALIMENTAR OS DADOS DA TABELA COM O RESULTADO OBTIDO NO BANCO
 		while (rs.next()) {
-			out.println("        		<tr>");
+			out.println("        		<tr id="+rs.getString("idAluno")+">");
 			out.println("        			<td>"+rs.getString("nmAluno")+"</td>");
 			out.println("        			<td>"+format.format(rs.getDate("dtNascimento"))+"</td>");
-			out.println("        			<td><a href=\"/servletsPOO/DeletaAluno?idAluno="+rs.getString("idAluno")+"\">Deleta</a></td>");
+			out.println("        			<td><a href=\"javascript:void(0)\" onclick=\"javascript:deletar("+rs.getString("idAluno")+")\"><i class=\"icon-remove\"></i>Deleta</a> | "+
+											"<a href=\"/servletsPOO/editaraluno?idaluno="+rs.getString("idAluno")+"\"><i class=\"icon-pencil\"></i>Editar</a></td>");
+			out.println("        		</tr>");
+			out.println("        		<tr id="+rs.getString("idAluno")+"_rows>");
 			out.println("        		</tr>");
 		}
-
 		out.println("        	</table>");
 		out.println("        </div>");
-		out.println("    </div>");
-		out.println("</div>");
-		out.println("<hr>");
-		out.println("<div class=\"container-fluid\">");
-		out.println("<footer class=\"well\">");
-		out.println("        <p>© Sybol 2013</p>");
-		out.println("</footer>");
-		out.println("</div>");
-		out.println("</body>");
-		out.println("<script src=\"js/jquery.js\" type=\"text/javascript\"></script>");
-		out.println("<script src=\"js/bootstrap.min.js\" type=\"text/javascript\"></script>");
-		out.println("<script src=\"js/jquery.maskedinput.js\" type=\"text/javascript\"></script>");
-		out.println("<script src=\"js/functions.js\" type=\"text/javascript\"></script>");
-		out.println("</html>");
+
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		//Inclue Rodape
+		RequestDispatcher dispatcherfooter = request.getRequestDispatcher("/footer");
+		dispatcherfooter.include(request, response);
 	}
 	// TODO Auto-generated constructor stub
 

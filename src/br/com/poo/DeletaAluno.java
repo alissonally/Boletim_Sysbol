@@ -1,6 +1,7 @@
 package br.com.poo;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.PreparedStatement;
 
 import javax.servlet.ServletException;
@@ -18,7 +19,7 @@ public class DeletaAluno extends HttpServlet {
 	private static final long serialVersionUID = 7907305766333805680L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		PrintWriter out = response.getWriter();
 		try {
 			//comando de sql para exclusao do dado
 			String sql = "delete from aluno where idAluno=?";
@@ -34,14 +35,15 @@ public class DeletaAluno extends HttpServlet {
 			ps.close();
 
 			//chama a lista de alunos atualizada
-			response.sendRedirect("ListaAluno");
-
+			//response.sendRedirect("lista");
+			out.println(1);
 		}catch(Exception e){
-			e.printStackTrace();
+			out.println(0);
+			//this.nconfirm();
+			//out.println(e.getStackTrace());
+			//e.printStackTrace();
+			//out.println("<div class=\"alert alert-error\">Erro ao excluir aluno<a class=\"close\" data-dismiss=\"alert\" href=\"#\">&times;</a></div>");
 		}
-
-
-
 	}
 
 }
