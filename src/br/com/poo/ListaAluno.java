@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.conexao.Banco;
 
@@ -21,7 +22,9 @@ public class ListaAluno extends HttpServlet {
 	private static final long serialVersionUID = 4315449461496798580L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		HttpSession session = request.getSession();
+		String success = (String) session.getAttribute("success");
+		String erro = (String) session.getAttribute("erro");
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html;charset=UTF-8");//Corrige problema de acentuação
 		// inclue cabeçalho
@@ -46,6 +49,8 @@ public class ListaAluno extends HttpServlet {
 
 		out.println("        <div class=\"span8\">");
 		out.println("            <div id=\"msg\"></div>");
+		out.println(          success !=null ? success :"" );
+		out.println(          erro !=null ? erro :"" );
 		out.println("        	<table class=\"table table-bordered table-hover\" >");
 		out.println("        		<tr >");
 		out.println("        			<th>Aluno</th>");
@@ -67,6 +72,8 @@ public class ListaAluno extends HttpServlet {
 		}
 		out.println("        	</table>");
 		out.println("        </div>");
+		session.removeAttribute("success");
+		session.removeAttribute("erro");
 
 		}catch(Exception e){
 			e.printStackTrace();

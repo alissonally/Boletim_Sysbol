@@ -63,6 +63,14 @@ public class EditarAluno extends HttpServlet{
 			dado.setTelefone(rs.getString("telefone"));
 			dado.setSexo(rs.getString("sexo"));
 			
+			out.println("teste <br />");
+			if(dado.getSexo()=="m"){
+				out.println("Macho");
+			}
+			if(dado.getSexo()=="f"){
+				out.println("femea");
+			}
+			
 			out.println("<form class=\"form-horizontal\" action=\"atualiza\" method=\"post\">"+
 					"<input type=\"hidden\" name=\"idAluno\" value=\""+rs.getString("idAluno")+"\">"+
 	                "<div class=\"control-group\">"+

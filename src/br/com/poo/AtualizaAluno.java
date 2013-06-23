@@ -1,7 +1,6 @@
 package br.com.poo;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.conexao.Banco;
 
@@ -24,7 +24,7 @@ public class AtualizaAluno extends HttpServlet {
 	
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
+		//PrintWriter out = response.getWriter();
 		
 		Banco banco;
 		try {
@@ -64,14 +64,15 @@ public class AtualizaAluno extends HttpServlet {
 			ps.close();
 
 			//redireciona o controle da pagina para a LISTA DE ALUNOS
+			HttpSession session = request.getSession();
+			session.setAttribute("success", "<div class=\"alert alert-success\">Atualizado com sucesso<a class=\"close\" data-dismiss=\"alert\" href=\"#\">&times;</a></div>");
+
 			response.sendRedirect("lista");
 		}catch(Exception e){
-			out.println(e.getMessage());
-			out.println("<br />"+request.getParameter("rg"));
-			//this.nconfirm();
-			//out.println(e.getStackTrace());
-			//e.printStackTrace();
-			//out.println("<div class=\"alert alert-error\">Erro ao excluir aluno<a class=\"close\" data-dismiss=\"alert\" href=\"#\">&times;</a></div>");
+			HttpSession session = request.getSession();
+			session.setAttribute("erro", "<div class=\"alert alert-erro\">Erro ao atualizar registro<a class=\"close\" data-dismiss=\"alert\" href=\"#\">&times;</a></div>");
+			response.sendRedirect("lista");
+			
 		}
 	}
 

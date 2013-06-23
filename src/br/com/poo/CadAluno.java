@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 
@@ -62,9 +63,15 @@ public class CadAluno extends HttpServlet {
 			ps.close();
 
 			//redireciona o controle da pagina para a LISTA DE ALUNOS
+			HttpSession session = request.getSession();
+			session.setAttribute("success", "<div class=\"alert alert-success\">Aluno cadastrado com sucesso!<a class=\"close\" data-dismiss=\"alert\" href=\"#\">&times;</a></div>");
+
 			response.sendRedirect("lista");
 		}catch( Exception e ){
-			e.printStackTrace();
+			//e.printStackTrace();
+			HttpSession session = request.getSession();
+			session.setAttribute("erro", "<div class=\"alert alert-erro\">Erro ao cadastrar aluno!<a class=\"close\" data-dismiss=\"alert\" href=\"#\">&times;</a></div>");
+			response.sendRedirect("lista");
 		}
 
 
